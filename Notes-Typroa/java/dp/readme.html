@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>readme.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///d%3A/enviroment/config/vscode/markdown.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h3 id="%E6%8B%A6%E6%88%AA%E5%99%A8">拦截器</h3>
+<ol>
+<li>拦截所有请求和部分请求：添加多个拦截器，并设置拦截器的order,表明拦截器执行顺序。</li>
+<li>拦截器需要注册到WebMvcConfigurer中,且拦截器中需要的bean 需要提前注入。</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RefreshTokenInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>{
+    <span class="hljs-keyword">private</span> StringRedisTemplate stringRedisTemplate;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RefreshTokenInterceptor</span><span class="hljs-params">(StringRedisTemplate stringRedisTemplate)</span> </span>{
+        <span class="hljs-keyword">this</span>.stringRedisTemplate = stringRedisTemplate;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">// 1.获取请求头中的token</span>
+        String token = request.getHeader(<span class="hljs-string">"authorization"</span>);
+        <span class="hljs-keyword">if</span> (StrUtil.isBlank(token)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-comment">// 2.基于token获取redis中的用户</span>
+        String key = RedisConstants.LOGIN_USER_KEY + token;
+        Map&lt;Object, Object&gt; userMap = stringRedisTemplate.opsForHash().entries(key);
+        <span class="hljs-comment">// 3.判断用户是否存在</span>
+        <span class="hljs-keyword">if</span> (userMap.isEmpty()) {
+            <span class="hljs-comment">// 4.不存在，拦截，返回401</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-comment">// 5.存在，保存用户信息到 ThreadLocal</span>
+        UserDTO userDTO = BeanUtil.fillBeanWithMap(userMap, <span class="hljs-keyword">new</span> UserDTO(), <span class="hljs-keyword">false</span>);
+        UserHolder.saveUser(userDTO);
+        <span class="hljs-comment">// 6.刷新token有效期</span>
+        stringRedisTemplate.expire(key, RedisConstants.LOGIN_USER_TTL, TimeUnit.MINUTES);
+        <span class="hljs-comment">// 7.放行</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">// 移除用户</span>
+        UserHolder.removeUser();
+    }
+}
+</div></code></pre>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WebMvcConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">WebMvcConfigurer</span> </span>{
+    <span class="hljs-meta">@Resource</span>
+    <span class="hljs-keyword">private</span> StringRedisTemplate stringRedisTemplate;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>{
+        registry.addInterceptor(<span class="hljs-keyword">new</span> LoginInterceptor())
+                .addPathPatterns(<span class="hljs-string">"/**"</span>)
+                .excludePathPatterns(<span class="hljs-string">"/user/code"</span>,<span class="hljs-string">"/user/login"</span>,<span class="hljs-string">"/blog/hot"</span>,<span class="hljs-string">"/shop/**"</span>,<span class="hljs-string">"/shop-type/**"</span>,<span class="hljs-string">"/upload/**"</span>,<span class="hljs-string">"/voucher/**"</span>)
+                .order(<span class="hljs-number">1</span>);
+        registry.addInterceptor(<span class="hljs-keyword">new</span> RefreshTokenInterceptor(stringRedisTemplate))
+                .addPathPatterns(<span class="hljs-string">"/**"</span>)
+                .order(<span class="hljs-number">0</span>);
+    }
+
+
+}
+</div></code></pre>
+<h2 id="%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3">缓存相关</h2>
+<h3 id="%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F">缓存穿透</h3>
+<p>查询一个不存在的数据，缓存和数据库都不命中，而大量请求这种查询的请求导致数据库压力增大
+<strong>原因：</strong></p>
+<ul>
+<li>业务代码问题，set和get的key不一致。</li>
+<li>恶意攻击，爬虫造成大量的空命中。</li>
+</ul>
+<ol>
+<li>缓存空值：缓存空值，避免缓存穿透。
+<strong>存在的问题：</strong></li>
+</ol>
+<ul>
+<li>value为null不占用存储空间，但是缓存为空值，需要一定的内存空间，<strong>设置一个较短的过期时间，让其自动剔除</strong></li>
+<li>缓存层和存储层有一段时间的窗口不一致，过期时间设置为5分钟，如果此时存储层添加了这个数据，缓存层和存储层会出现数据不一致性。<strong>存储时清楚缓存层的空值</strong></li>
+</ul>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">public</span> &lt;R, ID&gt; <span class="hljs-function">R <span class="hljs-title">getWithPassThrough</span><span class="hljs-params">(String keyPrefix, ID id, Class&lt;R&gt; type, Function&lt;ID, R&gt; dbFallback, Long time, TimeUnit unit)</span></span>{
+        String key = keyPrefix + id;
+        String json = stringRedisTemplate.opsForValue().get(key);
+        <span class="hljs-keyword">if</span> (StrUtil.isNotBlank(json)) {
+            <span class="hljs-keyword">return</span> JSONUtil.toBean(json, type);
+        }
+        <span class="hljs-keyword">if</span> (json != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        R r = dbFallback.apply(id);
+        <span class="hljs-keyword">if</span> (r == <span class="hljs-keyword">null</span>) {
+            stringRedisTemplate.opsForValue().set(key, <span class="hljs-string">""</span>, time, unit);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        <span class="hljs-keyword">this</span>.set(key, r, time, unit);
+        <span class="hljs-keyword">return</span> r;
+    }
+</div></code></pre>
+<ol start="2">
+<li>布隆过滤器</li>
+</ol>
+<ul>
+<li>在访问缓存层和存储层之前，将存在的key用布隆过滤器提前保存，对需要请求的key用布隆过滤器验证是否存在，存在时在进入缓存层，存储层。</li>
+<li>用bitmap做布隆过滤器，使用hash函数，将key映射到bitmap的索引位置，如果索引位置为1，则表示存在，否则不存在。</li>
+<li>布隆过滤器可以减少缓存穿透，由于哈希函数的碰撞，导致误判。但是误判率不能太高，否则会降低效率。</li>
+</ul>
+<h3 id="%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF">缓存击穿</h3>
+<p>缓存击穿：当前的key是一个热点key,并发量非常大，而对该key的缓存重建不能在短时间完成，比如key失效了，有大量的线程重建缓存，增加后端的负载。</p>
+<ol>
+<li>互斥锁
+只允许一个线程进行重建，其他线程等待重建缓存的线程执行完成，重新从缓存获取数据即可。</li>
+</ol>
+<ul>
+<li>缓存重建非常耗时时，吞吐量降低。如果缓存依赖其他缓存可能存在死锁。一致性可得到保证</li>
+</ul>
+<ol start="2">
+<li>永不过期
+设置一个逻辑过期的时间，当发现超过逻辑过期时间后，用单独的线程取更新缓存。而其他的返回之前的旧数据</li>
+</ol>
+<ul>
+<li>存在数据不一致情况。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> &lt;R, ID&gt; <span class="hljs-function">R <span class="hljs-title">getWithLogicalExpire</span><span class="hljs-params">(String keyPrefix, String lockKeyPrefix,ID id, Class&lt;R&gt; type, Function&lt;ID, R&gt; dbFallback, Long time, TimeUnit unit)</span></span>{
+        String key = keyPrefix + id;
+        String json = stringRedisTemplate.opsForValue().get(key);
+        <span class="hljs-keyword">if</span> (StrUtil.isBlank(json)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        RedisData redisData = JSONUtil.toBean(json, RedisData<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+        R r = JSONUtil.toBean((JSONObject) redisData.getData(), type);
+        LocalDateTime expireTime = redisData.getExpireTime();
+        <span class="hljs-comment">// 判断是否过期</span>
+        <span class="hljs-keyword">if</span> (expireTime.isAfter(LocalDateTime.now())) {
+            <span class="hljs-comment">// 没有过期，直接返回数据</span>
+            <span class="hljs-keyword">return</span> r;
+        }
+        <span class="hljs-comment">// 开启一个线程，刷新缓存</span>
+        String lockKey = lockKeyPrefix + id;
+        <span class="hljs-keyword">boolean</span> isLock = tryLock(lockKey);
+        <span class="hljs-keyword">if</span>(isLock){
+            CACHE_REBUILD_EXECUTOR.submit(() -&gt; {
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-comment">// 重建缓存</span>
+                    R r1 = dbFallback.apply(id);
+                    <span class="hljs-keyword">this</span>.setWithLogicalExpire(key, r1, time, unit);
+                } <span class="hljs-keyword">catch</span> (Exception e) {
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RedisCacheException(<span class="hljs-string">"缓存重建异常"</span>);
+                } <span class="hljs-keyword">finally</span> {
+                    <span class="hljs-comment">// 释放锁</span>
+                    unLock(lockKey);
+                }
+            });
+        }
+        <span class="hljs-keyword">return</span> r;
+    }
+</div></code></pre>
+<h3 id="%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9">缓存雪崩</h3>
+<p>大量缓存在同一时间段内失效，发生大量的缓存穿透，所有的查询落到数据库上</p>
+<ul>
+<li>尽量让失效时间点均衡</li>
+</ul>
+<h3 id="%E7%AE%80%E5%8D%95%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85">简单工具封装</h3>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> com.hmdp.utils;
+
+<span class="hljs-keyword">import</span> cn.hutool.core.util.BooleanUtil;
+<span class="hljs-keyword">import</span> cn.hutool.core.util.StrUtil;
+<span class="hljs-keyword">import</span> cn.hutool.json.JSONObject;
+<span class="hljs-keyword">import</span> cn.hutool.json.JSONUtil;
+<span class="hljs-keyword">import</span> com.hmdp.exception.RedisCacheException;
+<span class="hljs-keyword">import</span> org.springframework.data.redis.core.StringRedisTemplate;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="hljs-keyword">import</span> javax.annotation.Resource;
+<span class="hljs-keyword">import</span> java.time.LocalDateTime;
+<span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;
+<span class="hljs-keyword">import</span> java.util.concurrent.Executors;
+<span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;
+<span class="hljs-keyword">import</span> java.util.function.Function;
+
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisCache</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> StringRedisTemplate stringRedisTemplate;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisCache</span><span class="hljs-params">(StringRedisTemplate stringRedisTemplate)</span> </span>{
+        <span class="hljs-keyword">this</span>.stringRedisTemplate = stringRedisTemplate;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">set</span><span class="hljs-params">(String key, Object value, Long timeout, TimeUnit timeUnit)</span></span>{
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value), timeout, timeUnit);
+    }
+    <span class="hljs-comment">// 逻辑过期</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setWithLogicalExpire</span><span class="hljs-params">(String key, Object value, Long timeout, TimeUnit timeUnit)</span></span>{
+        RedisData redisData = <span class="hljs-keyword">new</span> RedisData();
+        redisData.setData(value);
+        redisData.setExpireTime(LocalDateTime.now().plusSeconds(timeUnit.toSeconds(timeout)));
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(redisData));
+    }
+
+    <span class="hljs-comment">/**
+     * 缓存穿透是指在缓存中查询一个不存在的数据，导致数据库查询，然后返回一个null值，导致客户端无法使用，称为缓存穿透。
+     * 粗暴用控制缓存击，直接返回空
+     * **/</span>
+    <span class="hljs-keyword">public</span> &lt;R, ID&gt; <span class="hljs-function">R <span class="hljs-title">getWithPassThrough</span><span class="hljs-params">(String keyPrefix, ID id, Class&lt;R&gt; type, Function&lt;ID, R&gt; dbFallback, Long time, TimeUnit unit)</span></span>{
+        String key = keyPrefix + id;
+        String json = stringRedisTemplate.opsForValue().get(key);
+        <span class="hljs-keyword">if</span> (StrUtil.isNotBlank(json)) {
+            <span class="hljs-keyword">return</span> JSONUtil.toBean(json, type);
+        }
+        <span class="hljs-keyword">if</span> (json != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        R r = dbFallback.apply(id);
+        <span class="hljs-keyword">if</span> (r == <span class="hljs-keyword">null</span>) {
+            stringRedisTemplate.opsForValue().set(key, <span class="hljs-string">""</span>, time, unit);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        <span class="hljs-keyword">this</span>.set(key, r, time, unit);
+        <span class="hljs-keyword">return</span> r;
+    }
+
+    <span class="hljs-comment">/**
+     * 缓存击穿
+     * */</span>
+    <span class="hljs-comment">// 线程池、</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);
+    <span class="hljs-keyword">public</span> &lt;R, ID&gt; <span class="hljs-function">R <span class="hljs-title">getWithLogicalExpire</span><span class="hljs-params">(String keyPrefix, String lockKeyPrefix,ID id, Class&lt;R&gt; type, Function&lt;ID, R&gt; dbFallback, Long time, TimeUnit unit)</span></span>{
+        String key = keyPrefix + id;
+        String json = stringRedisTemplate.opsForValue().get(key);
+        <span class="hljs-keyword">if</span> (StrUtil.isBlank(json)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        RedisData redisData = JSONUtil.toBean(json, RedisData<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+        R r = JSONUtil.toBean((JSONObject) redisData.getData(), type);
+        LocalDateTime expireTime = redisData.getExpireTime();
+        <span class="hljs-comment">// 判断是否过期</span>
+        <span class="hljs-keyword">if</span> (expireTime.isAfter(LocalDateTime.now())) {
+            <span class="hljs-comment">// 没有过期，直接返回数据</span>
+            <span class="hljs-keyword">return</span> r;
+        }
+        <span class="hljs-comment">// 开启一个线程，刷新缓存</span>
+        String lockKey = lockKeyPrefix + id;
+        <span class="hljs-keyword">boolean</span> isLock = tryLock(lockKey);
+        <span class="hljs-keyword">if</span>(isLock){
+            CACHE_REBUILD_EXECUTOR.submit(() -&gt; {
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-comment">// 重建缓存</span>
+                    R r1 = dbFallback.apply(id);
+                    <span class="hljs-keyword">this</span>.setWithLogicalExpire(key, r1, time, unit);
+                } <span class="hljs-keyword">catch</span> (Exception e) {
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RedisCacheException(<span class="hljs-string">"缓存重建异常"</span>);
+                } <span class="hljs-keyword">finally</span> {
+                    <span class="hljs-comment">// 释放锁</span>
+                    unLock(lockKey);
+                }
+            });
+        }
+        <span class="hljs-keyword">return</span> r;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryLock</span><span class="hljs-params">(String key)</span></span>{
+        Boolean flag = stringRedisTemplate.opsForValue().setIfAbsent(key, <span class="hljs-string">"1"</span>, <span class="hljs-number">10</span>, TimeUnit.SECONDS);
+        <span class="hljs-keyword">return</span> BooleanUtil.isTrue(flag);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unLock</span><span class="hljs-params">(String key)</span></span>{
+        stringRedisTemplate.delete(key);
+    }
+}
+</div></code></pre>
+<h2 id="%E9%94%81">锁</h2>
+<ul>
+<li>乐观锁：假设每次并不一定会发生冲突，不会立即锁定资源。通过版本号法，或者时间戳，版本号法是一种灵活的思想
+每次更新之前检查数据的版本号是否一致，只有版本号一致时才回更新。<strong>适合读多写少场景</strong>，例如库存查询。</li>
+<li>悲观锁：假设每次都会发生冲突，再操作之前会立即锁定资源。有效防止并发冲突，锁定时间较长的情况下会影响系统。</li>
+</ul>
+<h3 id="%E4%B9%90%E8%A7%82%E9%94%81%E8%A7%A3%E5%86%B3%E8%B6%85%E5%8D%96">乐观锁解决超卖</h3>
+<pre class="hljs"><code><div> <span class="hljs-meta">@Transactional</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Long <span class="hljs-title">seckillVoucherByLeGuan</span><span class="hljs-params">(Long voucherId)</span> </span>{
+        <span class="hljs-comment">/**
+         * 乐观锁：
+         * 版本号法，更新时判断之前的版本号是否正确，不正确则返回错误，正确则更新库存，并返回更新后的版本号
+         * 根据实际情况选择版本号字段，比如stock就可以作为一种版本
+         * 解决超卖，.gt("stock",0)即可
+         *
+         * */</span>
+        SeckillVoucher voucher = seckillVoucherService.getById(voucherId);
+        <span class="hljs-keyword">if</span>(voucher.getBeginTime().isAfter(LocalDateTime.now())){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"秒杀尚未开始"</span>);
+        }
+        <span class="hljs-keyword">if</span>(voucher.getEndTime().isBefore(LocalDateTime.now())){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"秒杀已经结束"</span>);
+        }
+        <span class="hljs-keyword">if</span>(voucher.getStock()&lt;=<span class="hljs-number">0</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"库存不足"</span>);
+        }
+        <span class="hljs-comment">// 扣减库存</span>
+        <span class="hljs-keyword">boolean</span> success = seckillVoucherService.update()
+                .setSql(<span class="hljs-string">"stock=stock-1"</span>)
+                .eq(<span class="hljs-string">"voucher_id"</span>, voucherId).gt(<span class="hljs-string">"stock"</span>,<span class="hljs-number">0</span>) <span class="hljs-comment">// 乐观锁，解决超卖</span>
+                .update();
+        <span class="hljs-keyword">if</span>(!success){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"库存不足"</span>);
+        }
+        <span class="hljs-comment">// 创建订单</span>
+        VoucherOrder order = <span class="hljs-keyword">new</span> VoucherOrder();
+        <span class="hljs-comment">// 全局唯一ID</span>
+        <span class="hljs-keyword">long</span> orderId = redisIdWorker.nextId(<span class="hljs-string">"order"</span>);
+        order.setId(orderId);
+        order.setUserId(UserHolder.getUser().getId());
+        order.setVoucherId(voucherId);
+        save(order);
+        <span class="hljs-keyword">return</span> orderId;
+    }
+
+</div></code></pre>
+<h3 id="%E4%B8%80%E4%BA%BA%E4%B8%80%E5%8D%95">一人一单</h3>
+<ul>
+<li>对USERID进行锁，防止一个用户多次下单，同一个JVM中，不同线程带过来的USERID获取相同的USERID常量池，userId.toString().intern()，内存地址相同</li>
+<li>使用synchronized对USERID加锁，然后执行业务</li>
+<li>加锁时机，由于业务是有事务的，需要对整个业务加锁，确保事务提交后，才释放锁</li>
+<li>事务要生效是对当前的类做了动态代理，拿到代理对象，通过代理对象this.createVoucherOrder(voucherId); this是非代理对象，没有事务功能</li>
+</ul>
+<ol>
+<li>依赖</li>
+</ol>
+<pre class="hljs"><code><div>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.aspectj<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>aspectjweaver<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</div></code></pre>
+<ol start="2">
+<li>启动类暴露代理</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-meta">@EnableAspectJAutoProxy</span>(exposeProxy = <span class="hljs-keyword">true</span>)
+</div></code></pre>
+<ol start="3">
+<li>通过代理对象执行业务代码</li>
+</ol>
+<pre class="hljs"><code><div>IVoucherOrderService proxy = (IVoucherOrderService) AopContext.currentProxy();
+            Long orderId = proxy.createVoucherOrder(voucherId);
+            <span class="hljs-keyword">return</span> orderId;
+</div></code></pre>
+<ul>
+<li>具体代码</li>
+</ul>
+<pre class="hljs"><code><div> <span class="hljs-meta">@Transactional</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Long <span class="hljs-title">createVoucherOrder</span><span class="hljs-params">(Long voucherId)</span> </span>{
+    <span class="hljs-comment">// 一人一单</span>
+    Long userId = UserHolder.getUser().getId();
+    <span class="hljs-keyword">if</span>(query().eq(<span class="hljs-string">"user_id"</span>,userId).eq(<span class="hljs-string">"voucher_id"</span>,voucherId).count()&gt;<span class="hljs-number">0</span>){
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"您已经购买过该优惠券"</span>);
+    }
+    <span class="hljs-comment">// 扣减库存</span>
+    <span class="hljs-keyword">boolean</span> success = seckillVoucherService.update()
+            .setSql(<span class="hljs-string">"stock=stock-1"</span>)
+            .eq(<span class="hljs-string">"voucher_id"</span>, voucherId).gt(<span class="hljs-string">"stock"</span>,<span class="hljs-number">0</span>) <span class="hljs-comment">// 乐观锁，解决超卖</span>
+            .update();
+    <span class="hljs-keyword">if</span>(!success){
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"库存不足"</span>);
+    }
+    <span class="hljs-comment">// 创建订单</span>
+    VoucherOrder order = <span class="hljs-keyword">new</span> VoucherOrder();
+    <span class="hljs-comment">// 全局唯一ID</span>
+    <span class="hljs-keyword">long</span> orderId = redisIdWorker.nextId(<span class="hljs-string">"order"</span>);
+    order.setId(orderId);
+    order.setUserId(UserHolder.getUser().getId());
+    order.setVoucherId(voucherId);
+    save(order);
+    <span class="hljs-keyword">return</span> orderId;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> Long <span class="hljs-title">seckillVoucherByYiRenYiDan</span><span class="hljs-params">(Long voucherId)</span> </span>{
+        <span class="hljs-comment">/**
+         *
+         * 乐观锁：
+         * 版本号法，更新时判断之前的版本号是否正确，不正确则返回错误，正确则更新库存，并返回更新后的版本号
+         * 根据实际情况选择版本号字段，比如stock就可以作为一种版本
+         * 解决超卖，.gt("stock",0)即可
+         *
+         * */</span>
+        SeckillVoucher voucher = seckillVoucherService.getById(voucherId);
+        <span class="hljs-keyword">if</span>(voucher.getBeginTime().isAfter(LocalDateTime.now())){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"秒杀尚未开始"</span>);
+        }
+        <span class="hljs-keyword">if</span>(voucher.getEndTime().isBefore(LocalDateTime.now())){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"秒杀已经结束"</span>);
+        }
+        <span class="hljs-keyword">if</span>(voucher.getStock()&lt;=<span class="hljs-number">0</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"库存不足"</span>);
+        }
+
+        Long userId = UserHolder.getUser().getId();
+        <span class="hljs-comment">/**
+         * 加锁时机：
+         * 1. 通过userID进行加锁，但userId.toString,每次都创建新一个对象，导致锁不住，用intern()解决，intern返回规范表示，从常量池查找对应的地址
+         * 2.事务提交后再释放锁
+         * 如果在createVoucherOrder里面加锁，函数结束后，锁释放，但是事务还没有提交，存在并发安全问题。
+         * 所以必须在事务提交后释放锁， 锁整个函数
+         * 3.事务要生效是对当前的类做了动态代理，拿到代理对象，通过代理对象this.createVoucherOrder(voucherId);
+         * this是非代理对象，没有事务功能
+         * 添加注解
+         * &lt;dependency&gt;
+         *  &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+         *  &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+         * &lt;/dependency&gt;
+         * 启动类暴露代理
+         * <span class="hljs-doctag">@EnableAspectJAutoProxy</span>(exposeProxy = true)
+         * */</span>
+<span class="hljs-comment">//        synchronized (</span>
+<span class="hljs-comment">//                userId.toString().intern()</span>
+<span class="hljs-comment">//        ){</span>
+<span class="hljs-comment">//            Long orderId = this.createVoucherOrder(voucherId);</span>
+<span class="hljs-comment">//            return orderId;</span>
+<span class="hljs-comment">//        }</span>
+        <span class="hljs-keyword">synchronized</span> (
+                userId.toString().intern()
+        ){
+            IVoucherOrderService proxy = (IVoucherOrderService) AopContext.currentProxy();
+            Long orderId = proxy.createVoucherOrder(voucherId);
+            <span class="hljs-keyword">return</span> orderId;
+        }
+
+    }
+
+</div></code></pre>
+<h3 id="%E4%BD%BF%E7%94%A8redis%E4%BA%92%E6%96%A5%E9%94%81%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81">使用redis互斥锁分布式锁</h3>
+<p>多个集群的时候前面的锁就不适用了
+基于redis实现分布式锁的思路：</p>
+<ul>
+<li>利用set nx ex获取锁，设置保存时间，保存线程标识，防止超时释放带来的误删锁</li>
+<li>释放锁，判断锁标识是否是自己的，是就删除，不是就返回</li>
+<li>利用LUA脚本让判断锁标识一致的操作和删除锁的操作原子化，保证原子性</li>
+<li>定义一个锁对象</li>
+</ul>
+<pre class="hljs"><code><div> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ILock</span> </span>{
+    <span class="hljs-comment">/**
+     * 尝试获取锁
+     * <span class="hljs-doctag">@return</span> true代表获取锁成功，false代表获取锁失败
+     * <span class="hljs-doctag">@param</span> timeoutSec 锁持有的过期时间，单位秒
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">tryLock</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeoutSec)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">unlock</span><span class="hljs-params">()</span></span>;
+}
+</div></code></pre>
+<p>存在的情况:</p>
+<ol>
+<li>锁误删除，删除的不是自己的锁，存入的线程提示
+<img src="img.png" alt="img.png">
+<img src="img_1.png" alt="img_1.png">
+<img src="img_2.png" alt="img_2.png"></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GaiJinRedisLock</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ILock</span></span>{
+    <span class="hljs-keyword">private</span> StringRedisTemplate stringRedisTemplate;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String KEY_PREFIX = <span class="hljs-string">"lock:"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String ID_PREFIX = UUID.randomUUID().toString(<span class="hljs-keyword">true</span>) + <span class="hljs-string">"-"</span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GaiJinRedisLock</span><span class="hljs-params">(String name, StringRedisTemplate stringRedisTemplate)</span> </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+        <span class="hljs-keyword">this</span>.stringRedisTemplate = stringRedisTemplate;
+    }
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryLock</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeoutSec)</span> </span>{
+        String threadId = ID_PREFIX + Thread.currentThread().getId();
+        Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(KEY_PREFIX + name, threadId, timeoutSec, TimeUnit.SECONDS);
+        <span class="hljs-comment">// 防止自动拆箱的空指针</span>
+        <span class="hljs-keyword">return</span> Boolean.TRUE.equals(isLock);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unlock</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// 判断标识是否一致</span>
+        String threadId = ID_PREFIX + Thread.currentThread().getId();
+        String id = stringRedisTemplate.opsForValue().get(KEY_PREFIX + name);
+        <span class="hljs-keyword">if</span> (threadId.equals(id)) {
+            stringRedisTemplate.delete(KEY_PREFIX + name);
+        }
+    }
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">public</span> Long <span class="hljs-title">seckillVoucherJiQun2</span><span class="hljs-params">(Long voucherId)</span> </span>{
+        SeckillVoucher voucher = seckillVoucherService.getById(voucherId);
+        <span class="hljs-keyword">if</span> (voucher.getBeginTime().isAfter(LocalDateTime.now())) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"秒杀尚未开始"</span>);
+        }
+        <span class="hljs-keyword">if</span> (voucher.getEndTime().isBefore(LocalDateTime.now())) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"秒杀已经结束"</span>);
+        }
+        <span class="hljs-keyword">if</span> (voucher.getStock() &lt;= <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"库存不足"</span>);
+        }
+
+        Long userId = UserHolder.getUser().getId();
+
+        String lockKey = <span class="hljs-string">"order:"</span> + userId;
+        GaiJinRedisLock lock = <span class="hljs-keyword">new</span> GaiJinRedisLock(lockKey, stringRedisTemplate);
+        <span class="hljs-keyword">boolean</span> isLock = lock.tryLock(<span class="hljs-number">1200</span>);
+        <span class="hljs-keyword">if</span> (!isLock) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"不允许重复下单"</span>);
+        }
+        <span class="hljs-keyword">try</span> {
+            IVoucherOrderService proxy  = (IVoucherOrderService) AopContext.currentProxy();
+            <span class="hljs-keyword">return</span> proxy.createVoucherOrder(voucherId);
+        } <span class="hljs-keyword">finally</span> {
+            <span class="hljs-comment">// 释放锁</span>
+            lock.unlock();
+        }
+    }
+
+</div></code></pre>
+<ol start="2">
+<li>判断锁是否过期，和释放锁之间的误差
+判断锁标识和释放锁两个动作，之间发生阻塞就GG，保证这个操作的原子性
+<img src="img_3.png" alt="img_3.png"></li>
+</ol>
+<p>Redis事务？？？？？    XXXX
+<strong>LUA脚本</strong>
+<img src="img_4.png" alt="img_4.png"></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (redis.call(<span class="hljs-string">'get'</span>, KEYS[<span class="hljs-number">1</span>]) == ARGV[<span class="hljs-number">1</span>]) <span class="hljs-keyword">then</span>
+	<span class="hljs-comment">-- 释放锁</span>
+	<span class="hljs-keyword">return</span> redis.call(<span class="hljs-string">'del'</span>, KEYS[<span class="hljs-number">1</span>])
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LuaRedisLock</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ILock</span></span>{
+    <span class="hljs-keyword">private</span> StringRedisTemplate stringRedisTemplate;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String KEY_PREFIX = <span class="hljs-string">"lock:"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String ID_PREFIX = UUID.randomUUID().toString(<span class="hljs-keyword">true</span>) + <span class="hljs-string">"-"</span>;
+    <span class="hljs-comment">// 释放锁的脚本,通过文件加载</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DefaultRedisScript&lt;Long&gt; SECUNLOCK_SCRIPT;
+    <span class="hljs-keyword">static</span> {
+        SECUNLOCK_SCRIPT = <span class="hljs-keyword">new</span> DefaultRedisScript&lt;&gt;();
+        SECUNLOCK_SCRIPT.setLocation(<span class="hljs-keyword">new</span> ClassPathResource(<span class="hljs-string">"secUnlock.lua"</span>));
+        SECUNLOCK_SCRIPT.setResultType(Long<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    }
+
+
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LuaRedisLock</span><span class="hljs-params">(String name, StringRedisTemplate stringRedisTemplate)</span> </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+        <span class="hljs-keyword">this</span>.stringRedisTemplate = stringRedisTemplate;
+    }
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryLock</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeoutSec)</span> </span>{
+        String threadId = ID_PREFIX + Thread.currentThread().getId();
+        Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(KEY_PREFIX + name, threadId, timeoutSec, TimeUnit.SECONDS);
+        <span class="hljs-comment">// 防止自动拆箱的空指针</span>
+        <span class="hljs-keyword">return</span> Boolean.TRUE.equals(isLock);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">unlock</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// 判断标识是否一致</span>
+        String threadId = ID_PREFIX + Thread.currentThread().getId();
+        <span class="hljs-comment">// 调用lua脚本, 满足了原子性</span>
+        stringRedisTemplate.execute(
+                SECUNLOCK_SCRIPT,
+                Collections.singletonList(KEY_PREFIX + name),
+                threadId);
+    }
+}
+
+
+</div></code></pre>
+<h3 id="%E4%B8%8A%E8%BF%B0%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98">上述存在的问题</h3>
+<p>下述问题发生概率极低</p>
+<ul>
+<li>不可重入：同一线程不能多次获取同一把锁：比如方法A调用方法B,A中需要获取锁，而B中也需要获取锁，B此时是获取不到锁的，因为A已经获取了锁，此时B就无法获取锁了，造成死锁。</li>
+<li>不可重试：锁获取失败，返回false, 无法重试，需要用户自己重试</li>
+<li>超时释放：业务执行时间过长，导致锁无法释放，存在安全隐患</li>
+<li>主从一致性： 如果Redis提供了主从集群，主从同步存在延迟。线程从主节点获得锁，还未来得及同步给从节点，此时主节点宕机，从从节点新选一个节点作为主节点，而此时新选的主节点没有被之前宕机的主节点同步，导致其他线程也能获取锁，从而造成安全隐患问题
+<strong>解决</strong></li>
+</ul>
+<h4 id="redisson%E6%A1%86%E6%9E%B6">Redisson框架</h4>
+<ul>
+<li>可重入：利用hsah结构记录线程ID和重入次数</li>
+<li>可重试：利用信号量和PubSub功能实现等待唤醒，获取锁失败的重试机制、</li>
+<li>超时续约：利用watchDog,每隔一段时间(releaseTime/3)，重置超时时间。</li>
+<li>主从一致性：
+<img src="img_5.png" alt="img_5.png"></li>
+</ul>
+<h4 id="%E4%BD%BF%E7%94%A8redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81">使用redisson分布式锁</h4>
+<p><img src="img_6.png" alt="img_6.png"></p>
+<p>可重入性
+<img src="img_7.png" alt="img_7.png">， 用LUA脚本实现
+<img src="img_8.png" alt="img_8.png">
+<img src="img_9.png" alt="img_9.png"></p>
+<h3 id="redis%E4%BC%98%E5%8C%96">redis优化</h3>
+<p><img src="img_11.png" alt="img_11.png"></p>
+<ul>
+<li>将优惠券时间，库存等数据存储在redis中，避免每次都去数据库查询，从而提高效率。</li>
+<li>将对应优惠券的购买的用户集合存储在redis中，避免每次都去数据库查询，从而提高效率。</li>
+<li>将订单创建，库存扣减放入消息队列，避免高并发下，数据库压力过大。</li>
+<li>
+<ul>
+<li>Lua脚本</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">local</span> voucherId = ARGV[<span class="hljs-number">1</span>]
+<span class="hljs-keyword">local</span> userId = ARGV[<span class="hljs-number">2</span>]
+<span class="hljs-keyword">local</span> currentTime = <span class="hljs-built_in">tonumber</span>(ARGV[<span class="hljs-number">3</span>])
+
+<span class="hljs-keyword">local</span> stockKey = <span class="hljs-string">'seckill:stock:'</span> .. voucherId
+<span class="hljs-keyword">local</span> orderKey = <span class="hljs-string">'seckill:order:'</span> .. voucherId
+
+<span class="hljs-comment">-- 获取活动信息</span>
+<span class="hljs-keyword">local</span> stock = <span class="hljs-built_in">tonumber</span>(redis.call(<span class="hljs-string">'hget'</span>, stockKey, <span class="hljs-string">'stock'</span>))
+<span class="hljs-keyword">local</span> startTime = <span class="hljs-built_in">tonumber</span>(redis.call(<span class="hljs-string">'hget'</span>, stockKey, <span class="hljs-string">'start_time'</span>))
+<span class="hljs-keyword">local</span> endTime = <span class="hljs-built_in">tonumber</span>(redis.call(<span class="hljs-string">'hget'</span>, stockKey, <span class="hljs-string">'end_time'</span>))
+
+<span class="hljs-comment">-- 判断活动是否未开始</span>
+<span class="hljs-keyword">if</span> currentTime &lt; startTime <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">-- 判断活动是否已结束</span>
+<span class="hljs-keyword">if</span> currentTime &gt; endTime <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">4</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">-- 判断库存是否充足</span>
+<span class="hljs-keyword">if</span> stock &lt;= <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">-- 判断用户是否已经下单</span>
+<span class="hljs-keyword">if</span> redis.call(<span class="hljs-string">'sismember'</span>, orderKey, userId) == <span class="hljs-number">1</span> <span class="hljs-keyword">then</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment">-- 扣减库存并记录用户</span>
+redis.call(<span class="hljs-string">'hincrby'</span>, stockKey, <span class="hljs-string">'stock'</span>, <span class="hljs-number">-1</span>)
+redis.call(<span class="hljs-string">'sadd'</span>, orderKey, userId)
+
+<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+ 
+</div></code></pre>
+<ul>
+<li>
+<ul>
+<li>service</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String LUA_SCRIPT_NAME = <span class="hljs-string">"/lua/secKill2.lua"</span>;
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> DefaultRedisScript&lt;Long&gt; SECKILL_SCRIPT;
+<span class="hljs-keyword">static</span> {
+    SECKILL_SCRIPT = <span class="hljs-keyword">new</span> DefaultRedisScript&lt;&gt;();
+    SECKILL_SCRIPT.setLocation(<span class="hljs-keyword">new</span> ClassPathResource(LUA_SCRIPT_NAME));
+    SECKILL_SCRIPT.setResultType(Long<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> Long <span class="hljs-title">seckillVoucherYiBU</span><span class="hljs-params">(Long voucherId)</span></span>{
+        <span class="hljs-comment">// 执行LUA脚本</span>
+        Long userId = UserHolder.getUser().getId();
+        <span class="hljs-comment">// 当前时间的时间戳</span>
+        Long now = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+        Long result = stringRedisTemplate.execute(
+                SECKILL_SCRIPT,
+                Collections.emptyList(),
+                voucherId.toString(),
+                userId.toString(),
+                now.toString()
+        );
+        <span class="hljs-keyword">int</span> r = result.intValue();
+        <span class="hljs-keyword">if</span>(r == <span class="hljs-number">1</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"库存不足"</span>);
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(r == <span class="hljs-number">2</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"不能重复下单"</span>);
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(r == <span class="hljs-number">3</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"活动未开始"</span>);
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(r == <span class="hljs-number">4</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> VoucherException(<span class="hljs-string">"活动已结束"</span>);
+        }
+        <span class="hljs-comment">// 有购买资格，保存到阻塞队列</span>
+        <span class="hljs-keyword">long</span> orderId = redisIdWorker.nextId(<span class="hljs-string">"seckill:orderID"</span>);
+
+        <span class="hljs-comment">// 加入异步MQ队列,实现订单创建</span>
+        VoucherOrder order = <span class="hljs-keyword">new</span> VoucherOrder();
+        order.setId(orderId);
+        order.setUserId(UserHolder.getUser().getId());
+        order.setVoucherId(voucherId);
+<span class="hljs-comment">//        rabbitTemplate.convertAndSend("order.direct", "order.routing.key", order);</span>
+        rabbitTemplate.convertAndSend(<span class="hljs-string">"order.exchange"</span>, <span class="hljs-string">"order.seckill.routing.key"</span>, order);
+        <span class="hljs-keyword">return</span> orderId;
+
+    }
+</div></code></pre>
+<ul>
+<li>
+<ul>
+<li>消费者</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">@Component</span>
+<span class="hljs-meta">@Slf</span>4j
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderSecMq</span> </span>{
+    <span class="hljs-meta">@Resource</span>
+    <span class="hljs-keyword">private</span> VoucherOrderServiceImpl voucherOrderService;
+    <span class="hljs-meta">@Resource</span>
+    <span class="hljs-keyword">private</span> ISeckillVoucherService seckillVoucherService;
+    <span class="hljs-comment">// 绑定交换机、队列、路由键</span>
+    <span class="hljs-meta">@RabbitListener</span>( bindings = <span class="hljs-meta">@QueueBinding</span>(
+            value = <span class="hljs-meta">@Queue</span>(value = <span class="hljs-string">"order.seckill.queue"</span>, durable = <span class="hljs-string">"true"</span>),
+            exchange = <span class="hljs-meta">@Exchange</span>(value = <span class="hljs-string">"order.exchange"</span>, type = <span class="hljs-string">"direct"</span>, durable = <span class="hljs-string">"true"</span>),
+            key = <span class="hljs-string">"order.seckill.routing.key"</span>
+    ))
+    <span class="hljs-meta">@Transactional</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createOrder</span><span class="hljs-params">(VoucherOrder voucherOrder)</span></span>{
+        <span class="hljs-comment">// 幂等判断</span>
+        VoucherOrder voucherOrder1 = voucherOrderService.getById(voucherOrder.getId());
+        <span class="hljs-keyword">if</span> (voucherOrder1 != <span class="hljs-keyword">null</span>){
+            log.info(<span class="hljs-string">"mq, 订单已存在"</span>);
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">try</span>{
+
+            <span class="hljs-comment">// 库存见一</span>
+            <span class="hljs-comment">// 扣减库存</span>
+            <span class="hljs-keyword">boolean</span> success = seckillVoucherService.update()
+                    .setSql(<span class="hljs-string">"stock=stock-1"</span>)
+                    .eq(<span class="hljs-string">"voucher_id"</span>, voucherOrder.getVoucherId()).gt(<span class="hljs-string">"stock"</span>,<span class="hljs-number">0</span>) <span class="hljs-comment">// 乐观锁，解决超卖</span>
+                    .update();
+            <span class="hljs-keyword">if</span>(!success){
+                log.error(<span class="hljs-string">"mq, 库存不足"</span>);
+            }
+            voucherOrderService.save(voucherOrder);
+            log.info(<span class="hljs-string">"mq, 扣减库存成功"</span>);
+
+        }<span class="hljs-keyword">catch</span> (Exception e){
+            log.error(<span class="hljs-string">"mq, 下单失败, 订单详情："</span>, voucherOrder);
+        }
+
+    }
+}
+</div></code></pre>
+<ul>
+<li>
+<ul>
+<li>rabbitmq配置</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">application:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">hmdp</span>
+  <span class="hljs-attr">rabbitmq:</span>
+    <span class="hljs-attr">host:</span> <span class="hljs-string">localhost</span>
+    <span class="hljs-attr">port:</span> <span class="hljs-number">5672</span>
+    <span class="hljs-attr">username:</span> <span class="hljs-string">sats</span>
+    <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span>
+    <span class="hljs-attr">virtual-host:</span> <span class="hljs-string">/dp</span>
+<span class="hljs-comment">#    生产者重试机制</span>
+    <span class="hljs-attr">connection-timeout:</span> <span class="hljs-string">1s</span>
+    <span class="hljs-attr">template:</span>
+      <span class="hljs-attr">retry:</span>
+        <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">multiplier:</span> <span class="hljs-number">1</span>
+        <span class="hljs-attr">max-attempts:</span> <span class="hljs-number">3</span>
+        <span class="hljs-attr">initial-interval:</span> <span class="hljs-string">1000ms</span>
+    <span class="hljs-attr">listener:</span>
+      <span class="hljs-attr">simple:</span>
+        <span class="hljs-attr">acknowledge-mode:</span> <span class="hljs-string">auto</span>
+
+</div></code></pre>
+<ul>
+<li>
+<ul>
+<li>批量登录的token生成</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>优惠券预热，提前打入redis</li>
+</ul>
+</li>
+<li>压测
+库存100， 150个用户，每个用20次请求，总计3000次请求 相比于不用redis性能提升了一倍左右
+<img src="img_12.png" alt="img_12.png">
+<img src="img_13.png" alt="img_13.png"></li>
+</ul>
+<h2 id="%E5%85%B3%E6%B3%A8%E6%8E%A8%E9%80%81">关注推送</h2>
+<h3 id="feed%E6%B5%81">Feed流</h3>
+<ul>
+<li>拉模式（读扩散）：只有用户主动去拉取，没有实时性，读取速度慢，
+<img src="img_15.png" alt="img_15.png"></li>
+<li>推模式（写扩散）：内存占用高
+<img src="img_14.png" alt="img_14.png"></li>
+</ul>
+<h1 id="%E5%8C%85%E8%A3%85%E4%B8%BAxx%E9%A1%B9%E7%9B%AE">包装为xx项目</h1>
+<h2 id="%E9%97%AE%E9%A2%98">问题</h2>
+<p>Q:一人多单问题？针对<strong>Lua脚本+RabbitMQ</strong>优化藏品抢购的订单处理流程</p>
+<p>使用hash存储，key为藏品ID,hashkey为用户ID,value为已经购买数量，脚本传递购买资格数量</p>
+<p><img src="assets/image-20241105170311759.png" alt="image-20241105170311759"></p>
+<p>Q:实现<strong>MetaObjectHandler</strong>接口，重写insertFill，updateFill方法实现公共字段的自动填充</p>
+<p>1.在实体类上添加注解@TableField，指定自动填充的策略</p>
+<p>2.创建一个类，实现MetaObjectHandler接口，并重写相应的方法</p>
+<pre class="hljs"><code><div>
+
+ 
+<span class="hljs-comment">/**
+ * 员工实体
+ */</span>
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String username;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String password;
+    <span class="hljs-keyword">private</span> String phone;
+    <span class="hljs-keyword">private</span> String sex;
+    <span class="hljs-keyword">private</span> String idNumber;
+    <span class="hljs-keyword">private</span> Integer status;
+ 
+    <span class="hljs-comment">//插入时候填充</span>
+    <span class="hljs-meta">@TableField</span>(fill = FieldFill.INSERT)
+    <span class="hljs-keyword">private</span> LocalDateTime createTime;
+    <span class="hljs-comment">//插入和更新时填充</span>
+    <span class="hljs-meta">@TableField</span>(fill = FieldFill.INSERT_UPDATE)
+    <span class="hljs-keyword">private</span> LocalDateTime updateTime;
+ 
+    <span class="hljs-comment">//插入时填充</span>
+    <span class="hljs-meta">@TableField</span>(fill = FieldFill.INSERT)
+    <span class="hljs-keyword">private</span> Long createUser;
+ 
+    <span class="hljs-comment">//插入更新时填充</span>
+    <span class="hljs-meta">@TableField</span>(fill = FieldFill.INSERT_UPDATE)
+    <span class="hljs-keyword">private</span> Long updateUser;
+ 
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> com.hmdp.config;<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Description</span>: TODO
+ * <span class="hljs-doctag">@Author</span>: sats@jz
+ * <span class="hljs-doctag">@Date</span>: 2024/11/5 19:20
+ **/</span>
+
+<span class="hljs-keyword">import</span> com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+<span class="hljs-keyword">import</span> org.apache.ibatis.reflection.MetaObject;
+
+<span class="hljs-keyword">import</span> java.time.LocalDateTime;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@description</span> TODO
+ * <span class="hljs-doctag">@author</span> sats@jz
+ * <span class="hljs-doctag">@date</span> 2024年11月05日 19:20
+ */</span>
+<span class="hljs-meta">@configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMetaObjectHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MetaObjectHandler</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertFill</span><span class="hljs-params">(MetaObject metaObject)</span> </span>{
+        <span class="hljs-keyword">if</span> (metaObject.hasSetter(<span class="hljs-string">"createTime"</span>)) {
+            metaObject.setValue(<span class="hljs-string">"createTime"</span>, LocalDateTime.now()); <span class="hljs-comment">// 创建时间</span>
+        }
+        <span class="hljs-keyword">if</span> (metaObject.hasSetter(<span class="hljs-string">"updateTime"</span>)) {
+            metaObject.setValue(<span class="hljs-string">"updateTime"</span>, LocalDateTime.now()); <span class="hljs-comment">// 修改时间</span>
+        }
+        <span class="hljs-keyword">if</span> (metaObject.hasSetter(<span class="hljs-string">"createUser"</span>)) {
+            metaObject.setValue(<span class="hljs-string">"createUser"</span>, <span class="hljs-number">1</span>); <span class="hljs-comment">// 创建人ID</span>
+        }
+        <span class="hljs-keyword">if</span> (metaObject.hasSetter(<span class="hljs-string">"updateUser"</span>)) {
+            metaObject.setValue(<span class="hljs-string">"updateUser"</span>, <span class="hljs-number">1</span>); <span class="hljs-comment">// 修改人ID</span>
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateFill</span><span class="hljs-params">(MetaObject metaObject)</span> </span>{
+        <span class="hljs-keyword">if</span> (metaObject.hasSetter(<span class="hljs-string">"updateTime"</span>)) {
+            metaObject.setValue(<span class="hljs-string">"updateTime"</span>, LocalDateTime.now()); <span class="hljs-comment">// 修改时间</span>
+        }
+        <span class="hljs-keyword">if</span> (metaObject.hasSetter(<span class="hljs-string">"updateUser"</span>)) {
+            metaObject.setValue(<span class="hljs-string">"updateUser"</span>, <span class="hljs-number">1</span>); <span class="hljs-comment">// 修改人ID</span>
+        }
+    }
+}
+
+</div></code></pre>
+<h3 id="%E6%8A%BD%E5%A5%96">抽奖</h3>
+<p><img src="assets/image-20241108185311366.png" alt="image-20241108185311366"></p>
+<p><img src="assets/image-20241108190720855.png" alt="image-20241108190720855"></p>
+<p>抽奖算法设计，变量，1.用户创建时间到抽奖时间之差的时间戳t 2.用户历史期间已经中奖品次数m 3.用户最近一个月消费总数与总消费数比值r  4.随机扰动因子，增加一点随机性   输出一个概率p， 根据概率p得到中将奖品的优劣。其中3的优先级大于2大于1大于4</p>
+<p><strong>t</strong>: 用户创建时间到抽奖时间的差值（时间戳）。</p>
+<ul>
+<li>归一化处理：可以将时间差转换为权重范围，越新的用户赋予较低权重，越老的用户权重较高。</li>
+</ul>
+<p><strong>mmm</strong>: 用户历史期间已中奖品次数。</p>
+<ul>
+<li>如果用户中奖次数多，可能相对权重较低（避免重复中奖），通过一定比例计算出归一化值。</li>
+</ul>
+<p><strong>rrr</strong>: 用户最近一个月消费总数与总消费数的比值。</p>
+<ul>
+<li>权重设定为 rrr 的直接比值，消费比例越高的用户权重越高，优先考虑。</li>
+</ul>
+<p><strong>随机扰动因子</strong>：用于增加随机性，使得权重相近的用户也有一定概率获得奖品。</p>
+<ul>
+<li>可以设置为一个0到1之间的随机数，每次抽奖重新生成。</li>
+</ul>
+<h4 id="2-%E6%9D%83%E9%87%8D%E8%AE%BE%E5%AE%9A%E5%92%8C%E6%A6%82%E7%8E%87%E8%AE%A1%E7%AE%97">2. 权重设定和概率计算</h4>
+<p>根据优先级分配每个变量的权重，例如：</p>
+<ul>
+<li>rrr 的权重最大，设为 0.5</li>
+<li>mmm 的权重其次，设为 0.3</li>
+<li>ttt 的权重较低，设为 0.15</li>
+<li>随机扰动因子权重最低，设为 0.05</li>
+</ul>
+<h4 id="1-%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E5%92%8C%E9%A2%84%E5%A4%84%E7%90%86">1. 变量定义和预处理</h4>
+<p>我们先对各变量做归一化处理，以确保它们在相同范围（例如0到1之间），方便权重计算。</p>
+<ul>
+<li><strong>ttt</strong>: 用户创建时间到抽奖时间的差值（时间戳）。
+<ul>
+<li>归一化处理：可以将时间差转换为权重范围，越新的用户赋予较低权重，越老的用户权重较高。</li>
+</ul>
+</li>
+<li><strong>mmm</strong>: 用户历史期间已中奖品次数。
+<ul>
+<li>如果用户中奖次数多，可能相对权重较低（避免重复中奖），通过一定比例计算出归一化值。</li>
+</ul>
+</li>
+<li><strong>rrr</strong>: 用户最近一个月消费总数与总消费数的比值。
+<ul>
+<li>权重设定为 rrr 的直接比值，消费比例越高的用户权重越高，优先考虑。</li>
+</ul>
+</li>
+<li><strong>随机扰动因子</strong>：用于增加随机性，使得权重相近的用户也有一定概率获得奖品。
+<ul>
+<li>可以设置为一个0到1之间的随机数，每次抽奖重新生成</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-%E6%9D%83%E9%87%8D%E8%AE%BE%E5%AE%9A%E5%92%8C%E6%A6%82%E7%8E%87%E8%AE%A1%E7%AE%97">2. 权重设定和概率计算</h4>
+<p>根据优先级分配每个变量的权重，例如：</p>
+<ul>
+<li>rrr 的权重最大，设为 0.5</li>
+<li>mmm 的权重其次，设为 0.3</li>
+<li>ttt 的权重较低，设为 0.15</li>
+<li>随机扰动因子权重最低，设为 0.05</li>
+</ul>
+<p>然后，我们使用加权求和的方式计算一个最终的概率 ppp 来决定中奖的概率：</p>
+<p><img src="assets/image-20241108192611452.png" alt="image-20241108192611452"></p>
+<p>其中，wrw_rwr、wmw_mwm、wtw_twt、wrandw_{\text{rand}}wrand 分别为各个变量的权重。</p>
+<ul>
+<li><strong>rrr</strong>: 消费比例，直接取值。</li>
+<li><strong>mmm</strong>: 历史中奖次数，我们取 1−m1 - m1−m 来降低中奖次数高的用户的权重。</li>
+<li><strong>ttt</strong>: 使用 1log⁡(t+1)\frac{1}{\log(t + 1)}log(t+1)1 来表示时间戳的加权，时间越长，权重越低。</li>
+<li><strong>随机扰动因子</strong>: 使用一个随机数在0到1之间，增加一定的随机性。</li>
+</ul>
+<h4 id="3-%E4%B8%AD%E5%A5%96%E6%A6%82%E7%8E%87-ppp-%E7%9A%84%E8%A7%A3%E9%87%8A">3. 中奖概率 ppp 的解释</h4>
+<p>计算出 ppp 后，可以将其用于奖品分配，按照ppp 的值将用户分入不同的奖品级别。例如：</p>
+<ul>
+<li>p&gt;0.8p &gt; 0.8p&gt;0.8: 用户有机会获得高等级奖品</li>
+<li>0.5&lt;p≤0.80.5 &lt; p \leq 0.80.5&lt;p≤0.8: 用户有机会获得中等级奖品</li>
+<li>p≤0.5p \leq 0.5p≤0.5: 用户有机会获得低等级奖品</li>
+</ul>
+<p><img src="assets/image-20241108225026597.png" alt="image-20241108225026597"></p>
+<p><img src="assets/image-20241108225043855.png" alt="image-20241108225043855"></p>
+<p><img src="assets/image-20241108225143934.png" alt="image-20241108225143934"></p>
+<h3 id="%E9%99%90%E6%B5%81">限流</h3>
+<p>执行LUA脚本</p>
+<p><img src="assets/image-20241108221441348.png" alt="image-20241108221441348"></p>
+<ol>
+<li>
+<p>基于Redis Incrby自增长， 传参过期时间，IP地址， 限制次数，</p>
+<p><strong>LUA脚本</strong></p>
+<p>数据结构 hash</p>
+<p>接口key:</p>
+<p>​      IP: Incrby &lt; 限制次数</p>
+</li>
+</ol>
+<p>基于注解和redis实现接口IP限流， 比如1S内请求30次，则封禁IP30分钟。</p>
+<ol>
+<li>
+<p>实现步骤</p>
+<ol>
+<li><strong>定义限流注解</strong>：创建一个注解用于配置限流参数，包括时间窗口、最大请求次数和封禁时间。</li>
+<li><strong>编写 Lua 脚本</strong>：Lua 脚本负责计数和封禁逻辑，确保每次请求操作都在 Redis 中原子执行。</li>
+<li><strong>使用 AOP 拦截</strong>：在控制器方法调用前拦截请求，根据注解参数调用 Lua 脚本实现限流。</li>
+<li><strong>异常处理</strong>：封禁时返回友好的错误消息。</li>
+</ol>
+<h4 id="%E8%AF%A6%E7%BB%86%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">详细代码实现</h4>
+<h4 id="1-%E5%AE%9A%E4%B9%89%E9%99%90%E6%B5%81%E6%B3%A8%E8%A7%A3">1.  定义限流注解</h4>
+<p>创建一个注解 <code>IpRateLimit</code>，用于指定请求次数、时间窗口和封禁时间。</p>
+</li>
+</ol>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.data.redis.core.RedisTemplate;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;
+
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisRateLimiter</span> </span>{
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> RedisTemplate&lt;String, Integer&gt; redisTemplate;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAllowed</span><span class="hljs-params">(String ip, <span class="hljs-keyword">int</span> maxRequests, <span class="hljs-keyword">int</span> timeWindow, <span class="hljs-keyword">int</span> banTime)</span> </span>{
+        String countKey = <span class="hljs-string">"rate_limit:count:"</span> + ip; <span class="hljs-comment">// IP请求次数的键</span>
+        String banKey = <span class="hljs-string">"rate_limit:ban:"</span> + ip;     <span class="hljs-comment">// 封禁标记的键</span>
+
+        <span class="hljs-comment">// 检查 IP 是否已被封禁</span>
+        <span class="hljs-keyword">if</span> (redisTemplate.hasKey(banKey)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>; <span class="hljs-comment">// 如果存在封禁标记，则直接返回不允许请求</span>
+        }
+
+        <span class="hljs-comment">// 记录请求次数</span>
+        Integer count = redisTemplate.opsForValue().get(countKey);
+        <span class="hljs-keyword">if</span> (count == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// 第一次请求，设置计数器并设定时间窗口</span>
+            redisTemplate.opsForValue().set(countKey, <span class="hljs-number">1</span>, timeWindow, TimeUnit.SECONDS);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (count &lt; maxRequests) {
+            <span class="hljs-comment">// 在时间窗口内，计数未超过限制，增加计数</span>
+            redisTemplate.opsForValue().increment(countKey);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 超过限流，设置封禁标记</span>
+            redisTemplate.opsForValue().set(banKey, <span class="hljs-number">1</span>, banTime, TimeUnit.MINUTES);
+            redisTemplate.delete(countKey); <span class="hljs-comment">// 删除计数器</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    }
+}
+
+</div></code></pre>
+<h4 id="2-%E7%BC%96%E5%86%99-lua-%E8%84%9A%E6%9C%AC">2. 编写 Lua 脚本</h4>
+<p>Lua 脚本会执行以下逻辑：</p>
+<ul>
+<li>判断 IP 是否已被封禁。</li>
+<li>如果没有被封禁，则递增计数器。</li>
+<li>如果请求次数超过限制，设置封禁键，并删除计数键。</li>
+</ul>
+<pre class="hljs"><code><div>
+-- Redis Lua 脚本
+local countKey = KEYS[<span class="hljs-number">1</span>]
+local banKey = KEYS[<span class="hljs-number">2</span>]
+local maxRequests = tonumber(ARGV[<span class="hljs-number">1</span>])
+local timeWindow = tonumber(ARGV[<span class="hljs-number">2</span>])
+local banTime = tonumber(ARGV[<span class="hljs-number">3</span>])
+
+-- 检查是否已被封禁
+<span class="hljs-keyword">if</span> redis.call(<span class="hljs-string">"EXISTS"</span>, banKey) == <span class="hljs-number">1</span> then
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> -- 已封禁，拒绝请求
+end
+
+-- 获取当前请求次数
+local currentRequests = tonumber(redis.call(<span class="hljs-string">"GET"</span>, countKey) or <span class="hljs-string">"0"</span>)
+
+<span class="hljs-keyword">if</span> currentRequests &gt;= maxRequests then
+    -- 超过最大请求次数，设置封禁键和封禁时间
+    redis.call(<span class="hljs-string">"SET"</span>, banKey, <span class="hljs-number">1</span>, <span class="hljs-string">"EX"</span>, banTime * <span class="hljs-number">60</span>)
+    redis.call(<span class="hljs-string">"DEL"</span>, countKey) -- 清除计数器
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> -- 超过限流，返回封禁结果
+<span class="hljs-keyword">else</span>
+    -- 未超出限流，增加请求计数
+    redis.call(<span class="hljs-string">"INCR"</span>, countKey)
+    redis.call(<span class="hljs-string">"EXPIRE"</span>, countKey, timeWindow)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> -- 请求允许
+end
+
+</div></code></pre>
+<h4 id="3-%E7%BC%96%E5%86%99-redisratelimiter-%E7%B1%BB">3. 编写 RedisRateLimiter 类</h4>
+<p>创建一个 <code>RedisRateLimiter</code> 类，通过 <code>RedisTemplate</code> 调用 Lua 脚本。这个类的 <code>isAllowed</code> 方法会根据 IP 和限流参数进行限流判断。</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.core.io.ClassPathResource;
+<span class="hljs-keyword">import</span> org.springframework.data.redis.core.RedisTemplate;
+<span class="hljs-keyword">import</span> org.springframework.data.redis.core.script.DefaultRedisScript;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="hljs-keyword">import</span> java.util.Arrays;
+
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisRateLimiter</span> </span>{
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> RedisTemplate&lt;String, Integer&gt; redisTemplate;
+
+    <span class="hljs-comment">// Lua脚本</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> DefaultRedisScript&lt;Long&gt; rateLimitScript;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisRateLimiter</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// 加载 Lua 脚本</span>
+        rateLimitScript = <span class="hljs-keyword">new</span> DefaultRedisScript&lt;&gt;();
+        rateLimitScript.setLocation(<span class="hljs-keyword">new</span> ClassPathResource(<span class="hljs-string">"rate_limit.lua"</span>)); <span class="hljs-comment">// Lua 脚本路径</span>
+        rateLimitScript.setResultType(Long<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAllowed</span><span class="hljs-params">(String ip, <span class="hljs-keyword">int</span> maxRequests, <span class="hljs-keyword">int</span> timeWindow, <span class="hljs-keyword">int</span> banTime)</span> </span>{
+        String countKey = <span class="hljs-string">"rate_limit:count:"</span> + ip;
+        String banKey = <span class="hljs-string">"rate_limit:ban:"</span> + ip;
+
+        Long result = redisTemplate.execute(rateLimitScript,
+                Arrays.asList(countKey, banKey),
+                maxRequests, timeWindow, banTime);
+
+        <span class="hljs-keyword">return</span> result != <span class="hljs-keyword">null</span> &amp;&amp; result == <span class="hljs-number">1</span>;
+    }
+}
+
+</div></code></pre>
+<h4 id="4-%E7%BC%96%E5%86%99-aop-%E5%88%87%E9%9D%A2%E9%80%BB%E8%BE%91">4. 编写 AOP 切面逻辑</h4>
+<p>创建切面类，拦截带有 <code>@IpRateLimit</code> 注解的方法，根据注解参数调用 <code>RedisRateLimiter</code> 实现限流。</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;
+<span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Around;
+<span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Aspect;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+
+<span class="hljs-meta">@Aspect</span>
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RateLimitAspect</span> </span>{
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> RedisRateLimiter redisRateLimiter;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> HttpServletRequest request;
+
+    <span class="hljs-meta">@Around</span>(<span class="hljs-string">"@annotation(ipRateLimit)"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">around</span><span class="hljs-params">(ProceedingJoinPoint joinPoint, IpRateLimit ipRateLimit)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+        String clientIp = request.getRemoteAddr(); <span class="hljs-comment">// 获取客户端 IP 地址</span>
+        <span class="hljs-keyword">int</span> maxRequests = ipRateLimit.maxRequests();
+        <span class="hljs-keyword">int</span> timeWindow = ipRateLimit.timeWindow();
+        <span class="hljs-keyword">int</span> banTime = ipRateLimit.banTime();
+
+        <span class="hljs-comment">// 检查请求是否超过限流</span>
+        <span class="hljs-keyword">if</span> (!redisRateLimiter.isAllowed(clientIp, maxRequests, timeWindow, banTime)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"IP banned due to too many requests - please try again later."</span>);
+        }
+
+        <span class="hljs-comment">// 限流检查通过，执行方法</span>
+        <span class="hljs-keyword">return</span> joinPoint.proceed();
+    }
+}
+
+</div></code></pre>
+<h4 id="5-%E5%9C%A8-controller-%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3">5. 在 Controller 中使用注解</h4>
+<p>在需要限流的接口方法上添加 <code>@IpRateLimit</code> 注解，指定限流配置。</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;
+
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/api"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApiController</span> </span>{
+
+    <span class="hljs-meta">@IpRateLimit</span>(maxRequests = <span class="hljs-number">30</span>, timeWindow = <span class="hljs-number">1</span>, banTime = <span class="hljs-number">30</span>) <span class="hljs-comment">// 1秒内超过30次请求封禁30分钟</span>
+    <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"/limited-endpoint"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">limitedEndpoint</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Request successful"</span>;
+    }
+}
+
+</div></code></pre>
+
+</body>
+</html>
