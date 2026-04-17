@@ -1,0 +1,437 @@
+---
+title: "Configuration"
+source: "https://docs.waveterm.dev/config"
+author:
+published:
+created: 2026-04-15
+description: "Wave's configuration files are located at ~/.config/waveterm/."
+tags:
+  - "wave"
+  - "配置"
+---
+Wave's configuration files are located at `~/.config/waveterm/`.
+
+The main configuration file is `settings.json` (`~/.config/waveterm/settings.json`).
+
+The file is structured as a mostly flat JSON file. Instead of using sub-objects we prefer to use ":" as level separators.
+
+> [!-info] -info
+> info
+> 
+> The easiest way to edit your config files is to use the wsh editconfig command which will open your Wave config file in our built-in preview editor.
+> 
+> ```markdown
+> wsh editconfig
+> ```
+
+## Configuration Keys
+
+| Key Name | Type | Function |
+| --- | --- | --- |
+| app:globalhotkey | string | A systemwide keybinding to open your most recent wave window. This is a set of key names separated by `:`. For more info, see [Customizable Systemwide Global Hotkey](#customizable-systemwide-global-hotkey) |
+| app:dismissarchitecturewarning | bool | Disable warnings on app start when you are using a non-native architecture for Wave. For more info, see [Why does Wave warn me about ARM64 translation when it launches?](https://docs.waveterm.dev/faq#why-does-wave-warn-me-about-arm64-translation-when-it-launches). |
+| app:defaultnewblock | string | Sets the default new block (Cmd:n, Cmd:d). "term" for terminal block, "launcher" for launcher block (default = "term") |
+| app:showoverlayblocknums | bool | Set to false to disable the Ctrl+Shift block number overlay that appears when holding Ctrl+Shift (defaults to true) |
+| app:ctrlvpaste | bool | On Windows/Linux, when null (default) uses Control+V on Windows only. Set to true to force Control+V on all non-macOS platforms, false to disable the accelerator. macOS always uses Command+V regardless of this setting |
+| app:confirmquit v0.14 | bool | Set to false to disable the quit confirmation dialog when closing Wave Terminal (defaults to true, requires app restart) |
+| app:hideaibutton v0.14 | bool | Set to true to hide the AI button in the tab bar (defaults to false) |
+| app:disablectrlshiftarrows v0.14 | bool | Set to true to disable Ctrl+Shift block-navigation keybindings (`Arrow` and `h/j/k/l`) (defaults to false) |
+| app:disablectrlshiftdisplay v0.14 | bool | Set to true to disable the Ctrl+Shift visual indicator display (defaults to false) |
+| app:focusfollowscursor v0.14 | string | Controls whether block focus follows cursor movement: `"off"` (default), `"on"` (all blocks), or `"term"` (terminal blocks only) |
+| app:tabbar v0.14.4 | string | Controls the position of the tab bar: `"top"` (default) for a horizontal tab bar at the top of the window, or `"left"` for a vertical tab bar on the left side of the window |
+| ai:preset | string | the default AI preset to use |
+| ai:baseurl | string | Set the AI Base Url (must be OpenAI compatible) |
+| ai:apitoken | string | your AI api token |
+| ai:apitype | string | defaults to "open\_ai", but can also set to "azure" (forspecial Azure AI handling), "anthropic", or "perplexity" |
+| ai:name | string | string to display in the Wave AI block header |
+| ai:model | string | model name to pass to API |
+| ai:apiversion | string | for Azure AI only (when apitype is "azure", this will default to "2023-05-15") |
+| ai:orgid | string |  |
+| ai:maxtokens | int | max tokens to pass to API |
+| ai:timeoutms | int | timeout (in milliseconds) for AI calls |
+| ai:proxyurl | string | HTTP proxy URL for AI API requests (does not apply to Wave Cloud AI) |
+| conn:askbeforewshinstall | bool | set to false to disable popup asking if you want to install wsh extensions on new machines |
+| conn:localhostdisplayname v0.14 | string | override the display name for localhost in the UI (e.g., set to "My Laptop" or "Local", or set to empty string to hide the name) |
+| term:fontsize | float | the fontsize for the terminal block |
+| term:fontfamily | string | font family to use for terminal block |
+| term:disablewebgl | bool | set to false to disable WebGL acceleration in terminal |
+| term:localshellpath | string | set to override the default shell path for local terminals |
+| term:localshellopts | string\[\] | set to pass additional parameters to the term:localshellpath (example: `["-NoLogo"]` for PowerShell will remove the copyright notice) |
+| term:copyonselect | bool | set to false to disable terminal copy-on-select |
+| term:scrollback | int | size of terminal scrollback buffer, max is 10000 |
+| term:theme | string | preset name of terminal theme to apply by default (default is "default-dark") |
+| term:transparency | float64 | set the background transparency of terminal theme (default 0.5, 0 = not transparent, 1.0 = fully transparent) |
+| term:allowbracketedpaste | bool | allow bracketed paste mode in terminal (default false) |
+| term:shiftenternewline | bool | when enabled, Shift+Enter sends escape sequence + newline (\\u001b\\n) instead of carriage return, useful for claude code and similar AI coding tools (default false) |
+| term:macoptionismeta | bool | on macOS, treat the Option key as Meta key for terminal keybindings (default false) |
+| term:cursor v0.14 | string | terminal cursor style. valid values are `block` (default), `underline`, and `bar` |
+| term:cursorblink v0.14 | bool | when enabled, terminal cursor blinks (default false) |
+| term:bellsound v0.14 | bool | when enabled, plays the system beep sound when the terminal bell (BEL character) is received (default false) |
+| term:bellindicator v0.14 | bool | when enabled, shows a visual indicator in the tab when the terminal bell is received (default false) |
+| term:osc52 v0.14 | string | controls OSC 52 clipboard behavior: `always` (default, allows OSC 52 at any time) or `focus` (requires focused window and focused block) |
+| term:durable v0.14 | bool | makes remote terminal sessions durable across network disconnects (defaults to false) |
+| editor:minimapenabled | bool | set to false to disable editor minimap |
+| editor:stickyscrollenabled | bool | enables monaco editor's stickyScroll feature (pinning headers of current context, e.g. class names, method names, etc.), defaults to false |
+| editor:wordwrap | bool | set to true to enable word wrapping in the editor (defaults to false) |
+| editor:fontsize | float64 | set the font size for the editor (defaults to 12px) |
+| editor:inlinediff | bool | set to true to show diffs inline instead of side-by-side, false for side-by-side (defaults to undefined which uses Monaco's responsive behavior) |
+| preview:showhiddenfiles | bool | set to false to disable showing hidden files in the directory preview (defaults to true) |
+| preview:defaultsort v0.14.2 | string | sets the default sort column for directory preview. `"name"` (default) sorts alphabetically by name ascending; `"modtime"` sorts by last modified time descending (newest first) |
+| markdown:fontsize | float64 | font size for the normal text when rendering markdown in preview. headers are scaled up from this size, (default 14px) |
+| markdown:fixedfontsize | float64 | font size for the code blocks when rendering markdown in preview (default is 12px) |
+| web:openlinksinternally | bool | set to false to open web links in external browser |
+| web:defaulturl | string | default web page to open in the web widget when no url is provided (homepage) |
+| web:defaultsearch | string | search template for web searches. e.g. `https://www.google.com/search?q={query}`. "{query}" gets replaced by search term |
+| autoupdate:enabled | bool | enable/disable checking for updates (requires app restart) |
+| autoupdate:intervalms | float64 | time in milliseconds to wait between update checks (requires app restart) |
+| autoupdate:installonquit | bool | whether to automatically install updates on quit (requires app restart) |
+| autoupdate:channel | string | the auto update channel "latest" (stable builds), or "beta" (updated more frequently) (requires app restart) |
+| tab:preset deprecated | string | a "bg@" preset to automatically apply to new tabs. e.g. `bg@green`. should match the preset key. deprecated in favor of `tab:background` |
+| tab:background v0.14.4 | string | a "bg@" preset to automatically apply to new tabs. e.g. `bg@green`. should match the preset key |
+| tab:confirmclose | bool | if set to true, a confirmation dialog will be shown before closing a tab (defaults to false) |
+| widget:showhelp | bool | whether to show help/tips widgets in right sidebar |
+| window:transparent | bool | set to true to enable window transparency (cannot be combined with `window:blur`) (macOS and Windows only, requires app restart, see [note on Windows compatibility](https://www.electronjs.org/docs/latest/tutorial/custom-window-styles#limitations)) |
+| window:blur | bool | set to enable window background blurring (cannot be combined with `window:transparent`) (macOS and Windows only, requires app restart, see [note on Windows compatibility](https://www.electronjs.org/docs/latest/tutorial/custom-window-styles#limitations)) |
+| window:opacity | float64 | 0-1, window opacity when `window:transparent` or `window:blur` are set |
+| window:bgcolor | string | set the window background color (should be hex: #xxxxxx) |
+| window:reducedmotion | bool | set to true to disable most animations |
+| window:tilegapsize | int | set to change override default gap size (in CSS pixels) between blocks |
+| window:magnifiedblockopacity | float64 | change the opacity of a magnified block (must be between 0 and 1, defaults to 0.6) |
+| window:magnifiedblocksize | float64 | change the size of a magnified block as a percentage of the dimensions of its parent layout (must be between 0 and 1, defaults to 0.9) |
+| window:magnifiedblockblurprimarypx | int | change the blur in CSS pixels that is applied directly behind a magnified block (see [backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter) for more info on how this gets applied) |
+| window:magnifiedblockblursecondarypx | int | change the blur in CSS pixels that is applied to the visible portions of non-magnified blocks when a block is magnified (see [backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter) for more info on how this gets applied) |
+| window:maxtabcachesize | int | number of tabs to cache. when tabs are cached, switching between them is very fast. (defaults to 10) |
+| window:showmenubar | bool | set to use the OS-native menu bar (Windows and Linux only, requires app restart) |
+| window:nativetitlebar | bool | set to use the OS-native title bar, rather than the overlay (Windows and Linux only, requires app restart) |
+| window:disablehardwareacceleration | bool | set to disable Chromium hardware acceleration to resolve graphical bugs (requires app restart) |
+| window:fullscreenonlaunch | bool | set to true to launch the foreground window in fullscreen mode (defaults to false) |
+| window:savelastwindow | bool | when `true`, the last window that is closed is preserved and is reopened the next time the app is launched (defaults to `true`) |
+| window:confirmonclose | bool | when `true`, a prompt will ask a user to confirm that they want to close a window if it has an unsaved workspace with more than one tab (defaults to `true`) |
+| window:dimensions | string | set the default dimensions for new windows using the format "WIDTHxHEIGHT" (e.g. "1920x1080"). when a new window is created, these dimensions will be automatically applied. The width and height values should be specified in pixels. |
+| telemetry:enabled | bool | set to enable/disable telemetry |
+
+For reference, this is the current default configuration (v0.14.0):
+
+```json
+{
+    "ai:preset": "ai@global",
+    "ai:model": "gpt-5-mini",
+    "ai:maxtokens": 4000,
+    "ai:timeoutms": 60000,
+    "app:defaultnewblock": "term",
+    "app:confirmquit": true,
+    "app:hideaibutton": false,
+    "app:disablectrlshiftarrows": false,
+    "app:disablectrlshiftdisplay": false,
+    "app:focusfollowscursor": "off",
+    "autoupdate:enabled": true,
+    "autoupdate:installonquit": true,
+    "autoupdate:intervalms": 3600000,
+    "conn:askbeforewshinstall": true,
+    "conn:wshenabled": true,
+    "editor:minimapenabled": true,
+    "web:defaulturl": "https://github.com/wavetermdev/waveterm",
+    "web:defaultsearch": "https://www.google.com/search?q={query}",
+    "window:tilegapsize": 3,
+    "window:maxtabcachesize": 10,
+    "window:nativetitlebar": true,
+    "window:magnifiedblockopacity": 0.6,
+    "window:magnifiedblocksize": 0.9,
+    "window:magnifiedblockblurprimarypx": 10,
+    "window:fullscreenonlaunch": false,
+    "window:magnifiedblockblursecondarypx": 2,
+    "window:confirmclose": true,
+    "window:savelastwindow": true,
+    "telemetry:enabled": true,
+    "term:bellsound": false,
+    "term:bellindicator": false,
+    "term:osc52": "always",
+    "term:cursor": "block",
+    "term:cursorblink": false,
+    "term:copyonselect": true,
+    "term:durable": false,
+    "waveai:showcloudmodes": true,
+    "waveai:defaultmode": "waveai@balanced",
+    "preview:defaultsort": "name"
+}
+```
+
+> [!-warning] -warning
+> warning
+> 
+> If you installed Wave pre-v0.9.0 your configuration file will be located at `~/.waveterm/config/settings.json`. This includes all of the other configuration files as well: `termthemes.json`, `presets.json`, and `widgets.json`.
+
+## Environment Variable Resolution
+
+To avoid putting secrets directly in config files, Wave supports environment variable resolution using `$ENV:VARIABLE_NAME` or `$ENV:VARIABLE_NAME:fallback` syntax. This works for any string value in any config file (settings.json, presets.json, ai.json, etc.).
+
+```json
+{
+  "ai:apitoken": "$ENV:OPENAI_APIKEY",
+  "ai:baseurl": "$ENV:AI_BASEURL:https://api.openai.com/v1"
+}
+```
+
+## WebBookmarks Configuration
+
+WebBookmarks allows you to store and manage web links with customizable display preferences. The bookmarks are stored in a JSON file (`bookmarks.json`) as a key-value map where the key (`id`) is an arbitrary identifier for the bookmark. By convention, you should start your ids with "bookmark@". In the web widget, you can pull up your bookmarks using Alt O
+
+### Bookmark Structure
+
+Each bookmark follows this structure (only `url` is required):
+
+```json
+{
+  "url": "https://example.com",
+  "title": "Example Site",
+  "iconurl": "https://example.com/custom-icon.png",
+  "display:order": 1
+}
+```
+
+### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| url | string | **Required.** The URL of the bookmark. |
+| title | string | **Optional.** A display title for the bookmark. |
+| icon | string | **Optional, rarely used.** Overrides the default favicon with an icon name. |
+| iconcolor | string | **Optional, rarely used.** Sets a custom color for the specified icon. |
+| iconurl | string | **Optional.** Provides a custom icon URL, useful if the favicon is incorrect (e.g., for dark mode compatibility). |
+| display:order | float64 | **Optional.** Defines the order in which bookmarks appear. |
+
+### Example bookmarks.json
+
+```json
+{
+  "bookmark@google": {
+    "url": "https://www.google.com",
+    "title": "Google"
+  },
+  "bookmark@claude": {
+    "url": "https://claude.ai",
+    "title": "Claude AI"
+  },
+  "bookmark@wave": {
+    "url": "https://waveterm.dev",
+    "title": "Wave Terminal",
+    "display:order": -1
+  },
+  "bookmark@wave-github": {
+    "url": "https://github.com/wavetermdev/waveterm",
+    "title": "Wave Github",
+    "iconurl": "https://github.githubassets.com/favicons/favicon-dark.png"
+  },
+  "bookmark@chatgpt": {
+    "url": "https://chatgpt.com",
+    "iconurl": "https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"
+  },
+  "bookmark@wave-pulls": {
+    "url": "https://github.com/wavetermdev/waveterm/pulls",
+    "title": "Wave Pull Requests",
+    "iconurl": "https://github.githubassets.com/favicons/favicon-dark.png"
+  }
+}
+```
+
+### Behavior
+
+- If `iconurl` is set, it fetches the icon from the specified URL instead of the site's default favicon.
+- Bookmarks are sorted based on `display:order` (if provided), otherwise by id.
+- `icon` and `iconcolor` are rarely needed since the default behavior fetches the site's favicon.
+- favicons are refreshed every 24-hours
+
+## Terminal Theming
+
+User-defined terminal themes are located in `~/.config/waveterm/termthemes.json`.
+
+This JSON file is structured as an object, with each sub-key defining a theme. Themes are applied by right-clicking on the terminal's header bar and selecting an entry from the "Themes" sub-menu. Alternatively they can be applied to the block's metadata key `term:theme`. This uses the JSON key value as the identifier. Note, for best consistency all colors should be of the format "#rrggbb" or "#rrggbbaa" (aa = alpha channel for transparency).
+
+```markdown
+wsh setmeta this term:theme="default-dark"
+```
+
+Here is an example of defining a full terminal theme. All of the built-in themes are defined here: [https://github.com/wavetermdev/waveterm/blob/main/pkg/wconfig/defaultconfig/termthemes.json](https://github.com/wavetermdev/waveterm/blob/main/pkg/wconfig/defaultconfig/termthemes.json) (if you'd like to add a popular terminal theme, please submit a PR!)
+
+```json
+{
+  "default-dark": {
+    "display:name": "Default Dark",
+    "display:order": 1,
+    "black": "#757575",
+    "red": "#cc685c",
+    "green": "#76c266",
+    "yellow": "#cbca9b",
+    "blue": "#85aacb",
+    "magenta": "#cc72ca",
+    "cyan": "#74a7cb",
+    "white": "#c1c1c1",
+    "brightBlack": "#727272",
+    "brightRed": "#cc9d97",
+    "brightGreen": "#a3dd97",
+    "brightYellow": "#cbcaaa",
+    "brightBlue": "#9ab6cb",
+    "brightMagenta": "#cc8ecb",
+    "brightCyan": "#b7b8cb",
+    "brightWhite": "#f0f0f0",
+    "gray": "#8b918a",
+    "cmdtext": "#f0f0f0",
+    "foreground": "#c1c1c1",
+    "selectionBackground": "",
+    "background": "#00000077",
+    "cursorAccent": ""
+  }
+}
+```
+
+> [!-info] -info
+> info
+> 
+> You can easily open the termthemes.json config file by running:
+> 
+> ```markdown
+> wsh editconfig termthemes.json
+> ```
+
+| Key Name | Type | ANSI FG# | ANSI BG# | Function |
+| --- | --- | --- | --- | --- |
+| display:name | string |  |  | the name as it will appear in the UI context menu |
+| display:order | float |  |  | entries in the context menu are sorted by display:order |
+| black | CSS color | 30 | 40 | color for black |
+| red | CSS color | 31 | 41 | color for red |
+| green | CSS color | 32 | 42 | color for green |
+| yellow | CSS color | 33 | 43 | color for yellow |
+| blue | CSS color | 34 | 44 | color for blue |
+| magenta | CSS color | 35 | 45 | color for magenta |
+| cyan | CSS color | 36 | 46 | color for cyan |
+| white | CSS color | 37 | 47 | color for white |
+| brightBlack | CSS color | 90 | 100 | color for bright black |
+| brightRed | CSS color | 91 | 101 | color for bright red |
+| brightGreen | CSS color | 92 | 102 | color for bright green |
+| brightYellow | CSS color | 93 | 103 | color for bright yellow |
+| brightBlue | CSS color | 94 | 104 | color for bright blue |
+| brightMagenta | CSS color | 95 | 105 | color for bright magenta |
+| brightCyan | CSS color | 96 | 106 | color for bright cyan |
+| brightWhite | CSS color | 97 | 107 | color for bright white |
+| gray | CSS color |  |  | currently unused |
+| cmdtext | CSS color |  |  | currently unused |
+| foreground | CSS color |  |  | foreground color (default when no color code is applied) |
+| background | CSS color |  |  | background color (default when no color code is applied), must have alpha channel (#rrggbbaa) if you want the terminal to be transparent |
+| cursorAccent | CSS color |  |  | color for cursor |
+| selectionBackground | CSS color |  |  | background color for selected text |
+
+## Customizable Systemwide Global Hotkey
+
+Wave allows settings a custom global hotkey to open your most recent window from anywhere in your computer. This has the name `"app:globalhotkey"` in the `settings.json` file and takes the form of a series of key names separated by the `:` character.
+
+### Examples
+
+As a practical example, suppose you want a value of `F5` as your global hotkey. Then you can simply set the value of `"app:globalhotkey"` to `"F5"` and reboot Wave to make that your global hotkey.
+
+As a less practical example, suppose you use the combination of the keys `Ctrl`, `Option`, and `e`. Then the value for this keybinding would be `"Ctrl:Option:e"`.
+
+### Allowed Key Names
+
+We support the following key names:
+
+- `Ctrl`
+- `Cmd`
+- `Shift`
+- `Alt`
+- `Option`
+- `Meta`
+- `Super`
+- Digits (non-numpad) represented by `c{Digit0}` through `c{Digit9}`
+- Letters `a` though `z`
+- F keys `F1` through `F20`
+- Soft keys `Soft1` through `Soft4`. These are essentially the same as `F21` through `F24`.
+- Space represented as either `Space` or a literal space
+- `Enter` (This is labeled as return on Mac)
+- `Tab`
+- `CapsLock`
+- `NumLock`
+- `Backspace` (This is labeled as delete on Mac)
+- `Delete`
+- `Insert`
+- The arrow keys `ArrowUp`, `ArrowDown`, `ArrowLeft`, and `ArrowRight`
+- `Home`
+- `End`
+- `PageUp`
+- `PageDown`
+- `Esc`
+- Volume controls `AudioVolumeUp`, `AudioVolumeDown`, `AudioVolumeMute`
+- Media controls `MediaTrackNext`, `MediaTrackPrevious`, `MediaPlayPause`, and `MediaStop`
+- `PrintScreen`
+- Numpad keys represented by `c{Numpad0}` through `c{Numpad9}`
+- The numpad decimal represented by `Decimal`
+- The numpad plus/add represented by `Add`
+- The numpad minus/subtract represented by `Subtract`
+- The numpad star/multiply represented by `Multiply`
+- The numpad slash/divide represented by `Divide`
+# 中文
+### 1. 基础设置 (`settings.json`)
+
+这是最主要的配置文件，采用扁平化的 JSON 结构。
+
+- **应用行为 (app:)**
+    
+    - `app:globalhotkey`: 设置全局快捷键（如 `"Ctrl:Option:e"`）从系统任何地方唤起 Wave。
+        
+    - `app:tabbar`: 控制标签栏位置，可选 `"top"`（顶部）或 `"left"`（左侧）。
+        
+    - `app:confirmquit`: 退出应用时是否显示确认对话框。
+        
+    - `app:hideaibutton`: 是否隐藏标签栏中的 AI 按钮。
+        
+- **AI 配置 (ai:)**
+    
+    - `ai:baseurl` & `ai:apitoken`: 设置兼容 OpenAI 的 API 地址和密钥。
+        
+    - `ai:apitype`: 支持 `open_ai`, `azure`, `anthropic`, 或 `perplexity`。
+        
+    - `ai:model`: 指定使用的 AI 模型名称。
+        
+- **终端设置 (term:)**
+    
+    - `term:fontsize` & `term:fontfamily`: 设置终端字体大小和系列。
+        
+    - `term:localshellpath`: 自定义本地 Shell 路径（如 PowerShell 或 Zsh）。
+        
+    - `term:transparency`: 设置终端背景透明度（默认 0.5）。
+        
+    - `term:theme`: 设置默认终端主题，如 `"default-dark"`。
+        
+
+### 2. 窗口特效与外观 (window:)
+
+这些属性直接控制你之前询问过的窗口视觉效果：
+
+|**配置项**|**类型**|**说明**|
+|---|---|---|
+|`window:transparent`|bool|**窗口透明**。开启后可实现背景穿透（与模糊互斥）。|
+|`window:blur`|bool|**背景模糊**。实现毛玻璃效果（与透明互斥）。|
+|`window:opacity`|float64|**不透明度**。0-1 之间，仅在开启透明或模糊时有效。|
+|`window:bgcolor`|string|设置窗口背景颜色（十六进制格式，如 `#000000`）。|
+|`window:nativetitlebar`|bool|是否使用系统原生标题栏。|
+
+### 3. 网络书签 (`bookmarks.json`)
+
+你可以管理常用网站，通过 `Alt + O` 快速访问：
+
+- **必填项**：`url`。
+    
+- **可选项**：`title`（显示标题）、`iconurl`（自定义图标）、`display:order`（排序权重）。
+    
+
+### 4. 终端主题 (`termthemes.json`)
+
+用于定义具体的颜色方案：
+
+- **ANSI 颜色**：定义黑、红、绿、黄、蓝、紫、青、白及其亮色版本的代码。
+    
+- **特殊颜色**：`foreground`（前景）、`background`（背景，若要透明需使用 `#rrggbbaa` 格式）及 `cursorAccent`（光标颜色）。
+    
+
+---
+
+**安全提示**：为了避免在配置文件中明文存储 API 密钥等敏感信息，Wave 支持使用 `$ENV:VARIABLE_NAME` 语法引用系统环境变量。
